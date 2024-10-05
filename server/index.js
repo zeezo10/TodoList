@@ -1,14 +1,14 @@
 const express = require("express")
 const app = express()
 const router = express.Router()
-const port = 3000
+const port = 80
 const cors = require("cors")
 
 const { Pool } = require('pg');
 const { json } = require("sequelize");
 
 const pool = new Pool({
-    connectionString: "postgres://default:nDAZb9HB2Rpz@ep-twilight-wave-a198q2dz-pooler.ap-southeast-1.aws.neon.tech:5432/verceldb?sslmode=require",
+    connectionString:"postgres://default:nDAZb9HB2Rpz@ep-twilight-wave-a198q2dz-pooler.ap-southeast-1.aws.neon.tech:5432/verceldb?sslmode=require",
   });
 
 app.use(cors())
