@@ -13,7 +13,7 @@ const fetchTodos = async () => {
     let inProgress = [];
     let done = [];
 
-    const response = await axios.get("http://localhost:3000/");
+    const response = await axios.get("https://todo-list-01-65jiiy6on-abdul-azizs-projects-57ea2f73.vercel.app/");
     // todos.value = response.data;
 
     response.data.map((el) => {
@@ -110,7 +110,7 @@ onUnmounted(() => {
 const updateTaskStatus = async (taskId, newStatus) => {
   try {
     const response = await axios.put(
-      `http://localhost:3000/todos/${taskId}/status`,
+      `https://todo-list-01-65jiiy6on-abdul-azizs-projects-57ea2f73.vercel.app/todos/${taskId}/status`,
       { status: newStatus }
     );
     console.log("Task status updated:", response.data.todo);

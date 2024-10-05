@@ -11,7 +11,7 @@ const categories = ref([]);
 
 const fetchCategories = async () => {
   try {
-    const response = await axios.get("http://localhost:3000/categories");
+    const response = await axios.get("https://todo-list-01-65jiiy6on-abdul-azizs-projects-57ea2f73.vercel.app/categories");
     categories.value = response.data;
   } catch (error) {
     console.error("Error fetching categories:", error);
@@ -28,7 +28,7 @@ const handleAdd = async () => {
       category_id: selectedCategory.value,
     };
 
-    const response = await axios.post('http://localhost:3000/', newTask);
+    const response = await axios.post('https://todo-list-01-65jiiy6on-abdul-azizs-projects-57ea2f73.vercel.app/', newTask);
     console.log('Task added:', response.data.todo);
     
     newTaskTitle.value = '';

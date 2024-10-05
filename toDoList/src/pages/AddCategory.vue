@@ -8,7 +8,7 @@ const newCategoryName = ref("");
 
 const fetchCategory = async () => {
   try {
-    const response = await axios.get("http://localhost:3000/categories");
+    const response = await axios.get("https://todo-list-01-65jiiy6on-abdul-azizs-projects-57ea2f73.vercel.app/categories");
     categories.value = response.data;
   } catch (error) {
     console.error("Error fetching categories:", error);
@@ -18,7 +18,7 @@ const fetchCategory = async () => {
 const fetchTodosByCategory = async (id) => {
   try {
     const response = await axios.get(
-      `http://localhost:3000/todos/category/${id}`
+      `https://todo-list-01-65jiiy6on-abdul-azizs-projects-57ea2f73.vercel.app/category/${id}`
     );
     todos.value = response.data;
     console.log("Fetched Todos:", todos.value);
@@ -39,7 +39,7 @@ const handleAddCategory = async () => {
     };
 
     const response = await axios.post(
-      "http://localhost:3000/categories",
+      "https://todo-list-01-65jiiy6on-abdul-azizs-projects-57ea2f73.vercel.app/categories",
       newCategory
     );
     categories.value.push(response.data.category);
