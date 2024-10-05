@@ -8,11 +8,7 @@ const { Pool } = require('pg');
 const { json } = require("sequelize");
 
 const pool = new Pool({
-    user:'postgres',
-    host:'localhost',
-    database:'todoList',
-    password:'postgres',
-    port: 5432,
+    connectionString: "postgres://default:nDAZb9HB2Rpz@ep-twilight-wave-a198q2dz-pooler.ap-southeast-1.aws.neon.tech:5432/verceldb?sslmode=require",
   });
 
 app.use(cors())
