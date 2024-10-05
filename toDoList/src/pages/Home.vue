@@ -13,7 +13,7 @@ const fetchTodos = async () => {
     let inProgress = [];
     let done = [];
 
-    const response = await axios.get("https://todo-list-01-65jiiy6on-abdul-azizs-projects-57ea2f73.vercel.app/");
+    const response = await axios.get("https://todo-list-01-pi.vercel.app/");
     // todos.value = response.data;
 
     response.data.map((el) => {
@@ -32,7 +32,6 @@ const fetchTodos = async () => {
     console.error("Error fetching todos:", error);
   }
 };
-
 
 // ----------------
 
@@ -110,7 +109,7 @@ onUnmounted(() => {
 const updateTaskStatus = async (taskId, newStatus) => {
   try {
     const response = await axios.put(
-      `https://todo-list-01-65jiiy6on-abdul-azizs-projects-57ea2f73.vercel.app/todos/${taskId}/status`,
+      `https://todo-list-01-pi.vercel.app/todos/${taskId}/status`,
       { status: newStatus }
     );
     console.log("Task status updated:", response.data.todo);
@@ -284,7 +283,7 @@ import glassImage from "../assets/glass.png";
                   class="mt-auto px-3 py-1 bg-red-400 text-white rounded-md hover:bg-red-500 font-bold text-sm"
                 >
                   Delete
-                </button> 
+                </button>
               </div>
             </div>
           </div>

@@ -8,7 +8,7 @@ const todos = ref([]);
 const fetchTodosByStatus = async () => {
   try {
     const response = await axios.get(
-      `https://todo-list-01-65jiiy6on-abdul-azizs-projects-57ea2f73.vercel.app/todos/status/history`
+      `https://todo-list-01-pi.vercel.app/todos/status/history`
     );
     todos.value = response.data; // Set the fetched todos to the state
     console.log("Fetched Todos:", todos.value); // Debugging: log the fetched todos
@@ -29,7 +29,9 @@ onMounted(fetchTodosByStatus);
 
 const handleDel = async (id) => {
   try {
-    const response = await axios.delete(`https://todo-list-01-65jiiy6on-abdul-azizs-projects-57ea2f73.vercel.app/${id}`);
+    const response = await axios.delete(
+      `https://todo-list-01-pi.vercel.app/${id}`
+    );
     fetchTodosByStatus();
   } catch (error) {}
 };
@@ -37,7 +39,7 @@ const handleDel = async (id) => {
 const updateTaskStatus = async (taskId, newStatus) => {
   try {
     const response = await axios.put(
-      `https://todo-list-01-65jiiy6on-abdul-azizs-projects-57ea2f73.vercel.app/todos/${taskId}/status`,
+      `https://todo-list-01-pi.vercel.app/todos/${taskId}/status`,
       { status: newStatus }
     );
     console.log("Task status updated:", response.data.todo);
@@ -49,7 +51,9 @@ const updateTaskStatus = async (taskId, newStatus) => {
 
 const deleteHistoryTasks = async () => {
   try {
-    const response = await axios.delete("https://todo-list-01-65jiiy6on-abdul-azizs-projects-57ea2f73.vercel.app/todos/history");
+    const response = await axios.delete(
+      "https://todo-list-01-pi.vercel.app/todos/history"
+    );
     fetchTodosByStatus();
   } catch (error) {
     console.error("Error deleting history tasks:", error);
