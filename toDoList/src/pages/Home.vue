@@ -6,6 +6,7 @@ const todosPending = ref([]);
 const todosInProgress = ref([]);
 const todosdone = ref([]);
 const todos = ref([]);
+const isMobile = ref(false);
 
 const fetchTodos = async () => {
   try {
@@ -14,7 +15,6 @@ const fetchTodos = async () => {
     let done = [];
 
     const response = await axios.get("https://todo-list-01-pi.vercel.app/");
-    // todos.value = response.data;
 
     response.data.map((el) => {
       if (el.status === "pending") {
@@ -40,7 +40,19 @@ const newTaskDescription = ref("");
 const newTaskDueDate = ref("");
 const newTaskStatus = ref("pending");
 
-onMounted(fetchTodos);
+onMounted(() => {
+  fetchTodos();
+  checkScreenSize();
+  window.addEventListener('resize', checkScreenSize);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('resize', checkScreenSize);
+});
+
+const checkScreenSize = () => {
+  isMobile.value = window.innerWidth < 768;
+};
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
@@ -123,24 +135,27 @@ import glassImage from "../assets/glass.png";
 </script>
 
 <template>
-  <div class="w-full flex flex-col p-4 md:ml-64">
+  <!-- <div :class="[' bg-pink-600 w-full flex flex-col p-4', { 'lg:ml-64': !isMobile }]"> -->
+ <div class="">
+
+  <div :class="[' flex flex-col p-4']">
     <!-- Header Section -->
     <div
-      class="h-64 bg-cover bg-center rounded-2xl flex flex-col p-5 shadow-xl w-full justify-between"
+      class="h-48 md:h-64 bg-cover bg-center rounded-2xl flex flex-col p-5 shadow-xl w-full justify-between"
       :style="{ backgroundImage: `url(${glassImage})` }"
     >
       <div class="flex flex-col justify-between">
-        <h1 class="text-4xl md:text-7xl text-white font-bold">{{ today }}</h1>
-        <h1 class="text-4xl md:text-7xl text-white">{{ currentTime }}</h1>
-        <h1 class="text-2xl md:text-4xl text-white">{{ formattedDate }}</h1>
+        <h1 class="text-3xl md:text-7xl text-white font-bold">{{ today }}</h1>
+        <h1 class="text-3xl md:text-7xl text-white">{{ currentTime }}</h1>
+        <h1 class="text-xl md:text-4xl text-white">{{ formattedDate }}</h1>
       </div>
     </div>
 
     <!-- Task List Section -->
-    <div class="flex gap-3 flex-wrap justify-between pt-5 overflow-x-auto">
+    <div class="flex flex-col md:flex-row gap-3 justify-between pt-5 overflow-x-auto">
       <!-- To Do Section -->
       <div
-        class="flex flex-col shadow-lg justify-center items-center border-2 border-purple-500 border-dashed rounded-3xl w-full md:w-[400px] h-[calc(100vh-300px)] p-5 shrink-0 gap-5 pr-3 bg-white"
+        class="flex flex-col shadow-lg justify-center items-center border-2 border-black border-dashed rounded-3xl w-full md:w-[32%] h-[calc(100vh-300px)] p-5 shrink-0 gap-5 pr-3 bg-white mb-3 md:mb-0"
       >
         <div class="flex h-20 w-full items-center justify-between">
           <h1 class="text-2xl md:text-3xl font-bold">
@@ -189,7 +204,7 @@ import glassImage from "../assets/glass.png";
 
       <!-- In Progress Section -->
       <div
-        class="flex flex-col shadow-lg justify-center items-center border-2 border-purple-500 border-dashed rounded-3xl w-full md:w-[400px] h-[calc(100vh-300px)] p-5 shrink-0 gap-5 pr-3 bg-white"
+        class="flex flex-col shadow-lg justify-center items-center border-2 border-black border-dashed rounded-3xl w-full md:w-[32%] h-[calc(100vh-300px)] p-5 shrink-0 gap-5 pr-3 bg-white mb-3 md:mb-0"
       >
         <div class="flex h-20 w-full items-center justify-between">
           <h1 class="text-2xl md:text-3xl font-bold">
@@ -240,7 +255,7 @@ import glassImage from "../assets/glass.png";
 
       <!-- Done Section -->
       <div
-        class="flex flex-col shadow-lg justify-center items-center border-2 border-purple-500 border-dashed rounded-3xl w-full md:w-[400px] h-[calc(100vh-300px)] p-5 shrink-0 gap-5 pr-3 bg-white"
+        class="flex flex-col shadow-lg justify-center items-center border-2 border-black border-dashed rounded-3xl w-full md:w-[32%] h-[calc(100vh-300px)] p-5 shrink-0 gap-5 pr-3 bg-white"
       >
         <div class="flex h-20 w-full items-center justify-between">
           <h1 class="text-2xl md:text-3xl font-bold">
@@ -292,5 +307,5 @@ import glassImage from "../assets/glass.png";
     </div>
   </div>
 
-  <router-view />
+ </div>
 </template>

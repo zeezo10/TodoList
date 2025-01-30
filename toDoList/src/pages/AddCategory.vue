@@ -66,16 +66,15 @@ import glassImage from "../assets/glass.png";
 </script>
 
 <template>
-  <div
-    class="ml-64 h-screen w-screen border-2 rounded-2xl border-dashed p-4 flex gap-5"
-  >
-    <div class="border-2 h-full w-1/3 rounded-xl flex flex-col bg-white">
+  <div class="flex flex-col md:flex-row  ml-2 md:ml-0  h-screen w-full p-4 gap-5 justify-center ">
+    <!-- Categories Section -->
+    <div class="border-2 h-full md:w-1/4 rounded-xl flex flex-col bg-white shadow-lg">
       <div class="flex p-5 flex-col gap-5">
-        <h1 class="text-4xl font-bold">My Categories</h1>
+        <h1 class="text-4xl font-bold text-center">My Categories</h1>
         <div class="flex gap-2">
           <input
             v-model="newCategoryName"
-            class="h-14 rounded-xl border-[1px] p-2 w-3/4"
+            class="h-14 rounded-xl border-[1px] p-2 w-full"
             placeholder="Add New Category"
           />
           <button
@@ -86,7 +85,7 @@ import glassImage from "../assets/glass.png";
           </button>
         </div>
       </div>
-      <div class="w-full h-full rounded-xl flex flex-col p-5 gap-3">
+      <div class="w-full h-full rounded-xl flex flex-col p-5 gap-3 overflow-auto">
         <div
           v-for="(category, index) in categories"
           :key="index"
@@ -102,9 +101,8 @@ import glassImage from "../assets/glass.png";
       </div>
     </div>
 
-    <div
-      class="border-2 w-2/3 h-full flex flex-col p-3 gap-2 overflow-scroll bg-white rounded-ss-2xl"
-    >
+    <!-- Todos Section -->
+    <div class="border-2 w-full md:w-3/4 h-full flex flex-col p-3 gap-2 bg-white shadow-lg rounded-xl">
       <div class="flex flex-row-reverse gap-4 text-white font-bold">
         <div class="bg-red-400 p-2 rounded-lg">Pending</div>
         <div class="bg-orange-400 p-2 rounded-lg">In Progress</div>
@@ -121,7 +119,7 @@ import glassImage from "../assets/glass.png";
           <div
             v-for="task in todos"
             :key="task.id"
-            class="w-full h-36 md:h-40 rounded-lg shadow-md flex flex-col justify-around p-4 border-[1px] mt-3"
+            class="w-full h-36 md:h-40 rounded-lg shadow-md flex flex-col justify-between p-4 border-[1px] mt-3"
           >
             <div
               :class="{
